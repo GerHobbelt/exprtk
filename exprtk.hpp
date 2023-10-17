@@ -7610,7 +7610,7 @@ namespace exprtk
             cache = std::make_pair(0,0);
          }
 
-         void free()
+         void release()
          {
             if (n0_e.first && n0_e.second)
             {
@@ -8389,7 +8389,7 @@ namespace exprtk
 
          virtual ~string_range_node()
          {
-            rp_.free();
+            rp_.release();
          }
 
          inline bool operator <(const string_range_node<T>& v) const
@@ -8473,7 +8473,7 @@ namespace exprtk
 
         ~const_string_range_node()
          {
-            rp_.free();
+            rp_.release();
          }
 
          inline T value() const exprtk_override
@@ -8575,7 +8575,7 @@ namespace exprtk
 
         ~generic_string_range_node()
          {
-            base_range_.free();
+            base_range_.release();
          }
 
          inline T value() const exprtk_override
@@ -15940,7 +15940,7 @@ namespace exprtk
 
         ~str_xrox_node()
          {
-            rp0_.free();
+            rp0_.release();
          }
 
          inline T value() const exprtk_override
@@ -16004,7 +16004,7 @@ namespace exprtk
 
         ~str_xoxr_node()
          {
-            rp1_.free();
+            rp1_.release();
          }
 
          inline T value() const exprtk_override
@@ -16069,8 +16069,8 @@ namespace exprtk
 
         ~str_xroxr_node()
          {
-            rp0_.free();
-            rp1_.free();
+            rp0_.release();
+            rp1_.release();
          }
 
          inline T value() const exprtk_override
@@ -16952,7 +16952,7 @@ namespace exprtk
          }
 
          template <typename T>
-         void inline free(expression_node<T>*& e) const
+         void inline release(expression_node<T>*& e) const
          {
             exprtk_debug(("node_allocator::free() - deleting expression_node "
                           "type: %03d addr: %p\n",
@@ -24372,7 +24372,7 @@ namespace exprtk
                           exprtk_error_location));
 
             free_node(node_allocator_,expression);
-            rp.free();
+            rp.release();
          }
 
          rp.clear();
@@ -24653,7 +24653,7 @@ namespace exprtk
                              "ERR107 - Expected ':' for break  in range",
                              exprtk_error_location));
 
-               rp.free();
+               rp.release();
 
                return false;
             }
@@ -24676,7 +24676,7 @@ namespace exprtk
                              "ERR108 - Failed parse end section of range",
                              exprtk_error_location));
 
-               rp.free();
+               rp.release();
 
                return false;
             }
@@ -24701,7 +24701,7 @@ namespace exprtk
                                 "ERR109 - Range upper bound less than zero! Constraint: r1 >= 0",
                                 exprtk_error_location));
 
-                  rp.free();
+                  rp.release();
 
                   return false;
                }
@@ -24720,7 +24720,7 @@ namespace exprtk
                              "ERR110 - Expected ']' for start of range",
                              exprtk_error_location));
 
-               rp.free();
+               rp.release();
 
                return false;
             }
@@ -24892,7 +24892,7 @@ namespace exprtk
             if (!parse_range(rp))
             {
                free_node(node_allocator_,result);
-               rp.free();
+               rp.release();
 
                return error_node();
             }
@@ -24918,7 +24918,7 @@ namespace exprtk
                              (rp.n1_c.first ? details::to_str(static_cast<int>(rp.n1_c.second)) : "?") + "]",
                              exprtk_error_location));
 
-               rp.free();
+               rp.release();
 
                return error_node();
             }
@@ -30585,7 +30585,7 @@ namespace exprtk
             const bool not_recipricol = (c >= T(0));
             const unsigned int p = static_cast<unsigned int>(details::numeric::to_int32(details::numeric::abs(c)));
 
-            node_allocator_->free(branch[1]);
+            node_allocator_->release(branch[1]);
 
             if (0 == p)
             {
