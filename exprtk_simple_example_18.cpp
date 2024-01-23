@@ -72,6 +72,11 @@ void file_io()
    printf("Result %10.3f\n",expression.value());
 }
 
+
+#if defined(BUILD_MONOLITHIC)
+#define main      exprtk_simple_example_18_main
+#endif
+
 int main()
 {
    file_io<double>();

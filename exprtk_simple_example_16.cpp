@@ -75,6 +75,11 @@ void linear_least_squares()
    printf("y = %15.12fx + %15.12f\n", beta, alpha);
 }
 
+
+#if defined(BUILD_MONOLITHIC)
+#define main      exprtk_simple_example_16_main
+#endif
+
 int main()
 {
    linear_least_squares<double>();

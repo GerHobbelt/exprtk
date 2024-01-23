@@ -66,6 +66,11 @@ void square_wave()
    }
 }
 
+
+#if defined(BUILD_MONOLITHIC)
+#define main      exprtk_simple_example_02_main
+#endif
+
 int main()
 {
    square_wave<double>();

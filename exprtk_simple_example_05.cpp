@@ -74,6 +74,11 @@ void custom_function()
    printf("Result: %10.5f\n",result);
 }
 
+
+#if defined(BUILD_MONOLITHIC)
+#define main      exprtk_simple_example_05_main
+#endif
+
 int main()
 {
    custom_function<double>();

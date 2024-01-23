@@ -49,6 +49,11 @@ void stddev_example()
    printf("stddev(1..25) = %10.6f\n",stddev);
 }
 
+
+#if defined(BUILD_MONOLITHIC)
+#define main      exprtk_simple_example_14_main
+#endif
+
 int main()
 {
    stddev_example<double>();

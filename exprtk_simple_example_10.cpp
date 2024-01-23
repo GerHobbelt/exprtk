@@ -85,6 +85,11 @@ void newton_sqrt()
    }
 }
 
+
+#if defined(BUILD_MONOLITHIC)
+#define main      exprtk_simple_example_10_main
+#endif
+
 int main()
 {
    newton_sqrt<double>();

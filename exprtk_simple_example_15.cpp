@@ -87,6 +87,11 @@ void black_scholes_merton_model()
    }
 }
 
+
+#if defined(BUILD_MONOLITHIC)
+#define main      exprtk_simple_example_15_main
+#endif
+
 int main()
 {
    black_scholes_merton_model<double>();

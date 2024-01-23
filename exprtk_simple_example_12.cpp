@@ -62,6 +62,11 @@ void bubble_sort()
    expression.value();
 }
 
+
+#if defined(BUILD_MONOLITHIC)
+#define main      exprtk_simple_example_12_main
+#endif
+
 int main()
 {
    bubble_sort<double>();

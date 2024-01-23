@@ -9353,6 +9353,11 @@ template <> struct type_name<float>       { static inline std::string value() { 
 template <> struct type_name<double>      { static inline std::string value() { return "double";      } };
 template <> struct type_name<long double> { static inline std::string value() { return "long double"; } };
 
+
+#if defined(BUILD_MONOLITHIC)
+#define main      exprtk_test_main
+#endif
+
 int main()
 {
    #define perform_test(Type,Number)                                           \

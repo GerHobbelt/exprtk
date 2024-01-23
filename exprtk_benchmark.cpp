@@ -26,7 +26,7 @@
 #include "exprtk.hpp"
 
 
-const std::string global_expression_list[]
+static const std::string global_expression_list[]
                      = {
                           "(y + x)",
                           "2 * (y + x)",
@@ -47,7 +47,7 @@ const std::string global_expression_list[]
                           "if((y + (x * 2.2)) <= (x + y + 1.1), x - y, x * y) + 2 * pi / x"
                        };
 
-const std::size_t global_expression_list_size = sizeof(global_expression_list) / sizeof(std::string);
+static const std::size_t global_expression_list_size = sizeof(global_expression_list) / sizeof(std::string);
 
 static const double global_lower_bound_x = -100.0;
 static const double global_lower_bound_y = -100.0;
@@ -183,7 +183,7 @@ bool run_parse_benchmark(exprtk::symbol_table<T>& symbol_table)
    return true;
 }
 
-const double pi = 3.141592653589793238462643383279502;
+static const double pi = 3.141592653589793238462643383279502;
 
 template <typename T>
 struct native
@@ -288,10 +288,15 @@ struct native
    }
 };
 
-double pgo_primer();
-void perform_file_based_benchmark(const std::string& file_name, const std::size_t& rounds = 100000);
+static double pgo_primer();
+static void perform_file_based_benchmark(const std::string& file_name, const std::size_t& rounds = 100000);
 
-int main(int argc, char* argv[])
+
+#if defined(BUILD_MONOLITHIC)
+#define main      exprtk_banchmark_main
+#endif
+
+int main(int argc, const char** argv)
 {
    if (argc >= 2)
    {
@@ -359,7 +364,7 @@ int main(int argc, char* argv[])
    return 0;
 }
 
-double pgo_primer()
+static double pgo_primer()
 {
    static const double lower_bound_x = -50.0;
    static const double lower_bound_y = -50.0;
@@ -396,7 +401,7 @@ double pgo_primer()
    return total;
 }
 
-std::size_t load_expression_file(const std::string& file_name, std::deque<std::string>& expression_list)
+static std::size_t load_expression_file(const std::string& file_name, std::deque<std::string>& expression_list)
 {
    std::ifstream stream(file_name.c_str());
 
@@ -420,7 +425,7 @@ std::size_t load_expression_file(const std::string& file_name, std::deque<std::s
    return line_count;
 }
 
-void perform_file_based_benchmark(const std::string& file_name, const std::size_t& rounds)
+static void perform_file_based_benchmark(const std::string& file_name, const std::size_t& rounds)
 {
    std::deque<std::string> expr_str_list;
 

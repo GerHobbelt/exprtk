@@ -122,6 +122,11 @@ void vector_randu()
    expression.value();
 }
 
+
+#if defined(BUILD_MONOLITHIC)
+#define main      exprtk_simple_example_19_main
+#endif
+
 int main()
 {
    vector_randu<double>();

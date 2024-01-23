@@ -93,6 +93,11 @@ void savitzky_golay_filter()
    }
 }
 
+
+#if defined(BUILD_MONOLITHIC)
+#define main      exprtk_simple_example_13_main
+#endif
+
 int main()
 {
    savitzky_golay_filter<double>();

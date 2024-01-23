@@ -83,6 +83,11 @@ void composite()
    printf("%s = %e\n", expression_string.c_str(), result);
 }
 
+
+#if defined(BUILD_MONOLITHIC)
+#define main      exprtk_simple_example_08_main
+#endif
+
 int main()
 {
    composite<double>();

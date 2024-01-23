@@ -53,6 +53,11 @@ void polynomial()
    }
 }
 
+
+#if defined(BUILD_MONOLITHIC)
+#define main      exprtk_simple_example_03_main
+#endif
+
 int main()
 {
    polynomial<double>();

@@ -71,6 +71,11 @@ void monte_carlo_pi()
           std::abs(real_pi - approximate_pi));
 }
 
+
+#if defined(BUILD_MONOLITHIC)
+#define main      exprtk_simple_example_17_main
+#endif
+
 int main()
 {
    monte_carlo_pi<double>();

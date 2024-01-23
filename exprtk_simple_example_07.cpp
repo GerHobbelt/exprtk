@@ -64,6 +64,11 @@ void logic()
    }
 }
 
+
+#if defined(BUILD_MONOLITHIC)
+#define main      exprtk_simple_example_07_main
+#endif
+
 int main()
 {
    logic<double>();

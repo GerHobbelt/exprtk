@@ -81,6 +81,11 @@ void fibonacci()
    }
 }
 
+
+#if defined(BUILD_MONOLITHIC)
+#define main      exprtk_simple_example_04_main
+#endif
+
 int main()
 {
    fibonacci<double>();

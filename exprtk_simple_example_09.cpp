@@ -145,6 +145,11 @@ void primes()
    }
 }
 
+
+#if defined(BUILD_MONOLITHIC)
+#define main      exprtk_simple_example_09_main
+#endif
+
 int main()
 {
    primes<double>();

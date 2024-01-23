@@ -51,6 +51,11 @@ void trig_function()
    }
 }
 
+
+#if defined(BUILD_MONOLITHIC)
+#define main      exprtk_simple_example_01_main
+#endif
+
 int main()
 {
    trig_function<double>();

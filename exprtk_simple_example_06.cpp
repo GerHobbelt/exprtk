@@ -53,6 +53,11 @@ void vector_function()
    expression.value();
 }
 
+
+#if defined(BUILD_MONOLITHIC)
+#define main      exprtk_simple_example_06_main
+#endif
+
 int main()
 {
    vector_function<double>();
